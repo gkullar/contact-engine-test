@@ -1,0 +1,33 @@
+<h3>SMS Providers</h3>
+<ng-container *ngIf="!smsProvidersState?.isLoading">
+  <p *ngIf="!smsProvidersState?.data?.length">No SMS Providers found.</p>
+
+  <table
+    *ngIf="smsProvidersState?.data?.length"
+    mat-table
+    [dataSource]="smsProvidersState?.data"
+    class="mat-elevation-z8"
+  >
+    <ng-container matColumnDef="country">
+      <th mat-header-cell *matHeaderCellDef>Country</th>
+      <td mat-cell *matCellDef="let element">{{ element.country }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="origin_no">
+      <th mat-header-cell *matHeaderCellDef>Origin no.</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.originating_number }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</ng-container>
+
+<app-spinner *ngIf="smsProvidersState?.isLoading"></app-spinner>

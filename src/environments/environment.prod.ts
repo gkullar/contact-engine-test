@@ -1,3 +1,8 @@
+const host = '';
+
 export const environment = {
-  production: true
+  production: true,
+  api: {
+    root: `${host}/api`,
+  },
 };

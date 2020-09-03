@@ -1,0 +1,33 @@
+<h3>Add SMS Provider</h3>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off">
+  <app-country-control
+    [control]="form.get('country_id')"
+    [options]="countriesState?.data"
+    [optionsLoading]="countriesState?.isLoading"
+  ></app-country-control>
+  <mat-form-field>
+    <input matInput formControlName="name" type="text" placeholder="Name" />
+    <mat-error *ngIf="form.get('name').hasError('required')"
+      >Please provide a name</mat-error
+    >
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      matInput
+      formControlName="originating_number"
+      type="text"
+      placeholder="Origin No."
+    />
+    <mat-error *ngIf="form.get('originating_number').hasError('required')"
+      >Please provide an origin no.</mat-error
+    >
+  </mat-form-field>
+  <br />
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="form.invalid || isSubmitting"
+  >
+    {{ isSubmitting ? "Submitting" : "Submit" }}
+  </button>
+</form>

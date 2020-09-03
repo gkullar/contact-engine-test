@@ -1,0 +1,17 @@
+<mat-form-field [ngClass]="{ 'readonly-wrapper': optionsLoading }">
+  <mat-select [formControl]="control" [placeholder]="placeholderText">
+    <ng-container *ngIf="!optionsLoading && options?.length">
+      <mat-option *ngFor="let option of options" [value]="option[valueKey]">
+        {{ option[displayKey] }}
+      </mat-option>
+    </ng-container>
+  </mat-select>
+  <mat-hint *ngIf="!optionsLoading && options?.length === 0">{{
+    noOptionsMessage
+  }}</mat-hint>
+  <mat-error *ngIf="control.hasError('required')"
+    >Please select a value</mat-error
+  >
+</mat-form-field>
+
+<app-spinner *ngIf="optionsLoading"></app-spinner>
